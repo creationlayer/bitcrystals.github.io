@@ -18,6 +18,7 @@ $(function(){
         var backers = json.orders + ' backers';
         var funded = Math.round(raised/730*100);
         var percentRemaining = Math.round((left/total)*100);
+        var bcySold = 100-percentRemaining;
         $(function(){
         $.get( "https://api.bitcoinaverage.com/ticker/global/USD/last", function(data) {
             var usdTotal = Math.round(raised*data)
@@ -27,7 +28,9 @@ $(function(){
         $('.progress-bar').css('width', percentsold);
         $('.ratebtc').html(ratebtc );  
         $('.backers').html(raisedtotal + " from " + backers );
-        $('.progress-bar-success').css('width', goal + '%');
+        $('.progress-bar-goal').css('width', goal + '%');
+        $('.progress-bar-bcy').css('width', bcySold + '%');
+        $('.bcybar').html(bcySold + "% BCY Sold");
         $('.goal-label').html(raisedtotal + " towards goal of 730 BTC (" + soldT + " out of " + total + " BCY)");
         $('.funded-label').html(funded + " % Funded");
         $('.remainingpercent').html(percentRemaining + "% BCY Remaining");
